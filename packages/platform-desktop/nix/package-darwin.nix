@@ -47,7 +47,7 @@ rustPlatform.buildRustPackage (finalAttrs: {
 
   # macOS: no GTK/WebKitGTK, no Linux-specific libs; WKWebView is built-in.
   buildInputs = [
-    # openssl kept for crypto/network paths; dbus/libayatana/xdotool removed (Linux-only)
+    openssl
   ];
 
   postInstall = ''
