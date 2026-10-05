@@ -17,7 +17,7 @@ let
   tauriConf = lib.importJSON ../src-tauri/tauri.conf.json;
 in
 rustPlatform.buildRustPackage (finalAttrs: {
-  pname = "bramble";
+  pname = "bramble-desktop";
   version = tauriConf.version;
 
   inherit src;
