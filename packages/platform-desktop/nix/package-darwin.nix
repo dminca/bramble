@@ -2,7 +2,6 @@
 # Linux parts remain untouched in package.nix.
 {
   lib,
-  stdenv,
   rustPlatform,
   cargo-tauri,
   nodejs,
