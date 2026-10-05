@@ -34,7 +34,7 @@
     {
       packages = forEachSystem (pkgs: rec {
         bramble = pkgs.callPackage (
-          if pkgs.system == "aarch64-darwin" then
+          if pkgs.stdenv.hostPlatform.system == "aarch64-darwin" then
             ./packages/platform-desktop/nix/package-darwin.nix
           else
             ./packages/platform-desktop/nix/package.nix
@@ -46,7 +46,7 @@
 
       overlays.default = final: _prev: {
         bramble = final.callPackage (
-          if final.system == "aarch64-darwin" then
+          if final.stdenv.hostPlatform.system == "aarch64-darwin" then
             ./packages/platform-desktop/nix/package-darwin.nix
           else
             ./packages/platform-desktop/nix/package.nix
@@ -55,6 +55,6 @@
 
       # `nix flake check` builds the package, which is the only check worth having here: the
       # failure this guards against is the derivation drifting away from the repository.
-      checks = forEachSystem (pkgs: { bramble = self.packages.${pkgs.system}.bramble; });
+      checks = forEachSystem (pkgs: { bramble = self.packages.${pkgs.stdenv.hostPlatform.system}.bramble; });
     };
 }
