@@ -50,6 +50,11 @@ rustPlatform.buildRustPackage (finalAttrs: {
     # openssl kept for crypto/network paths; dbus/libayatana/xdotool removed (Linux-only)
   ];
 
+  postInstall = ''
+    mkdir -p $out/bin
+    ln -s $out/Applications/Bramble.app/Contents/MacOS/bramble-desktop $out/bin/bramble-desktop
+  '';
+
   doCheck = true;
 
   meta = {
